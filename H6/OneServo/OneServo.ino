@@ -26,13 +26,17 @@ void loop() {
  analogWrite(100, 200/4);
  Serial.println("inches");
  delay(60);
- servo.write(0);
- delay(1000);
- servo.write(90);
- delay(1000);
- 
- servo.write(180);
- delay(1000);
+int i;
+ for (i = 0; i < 180; i++) {
+ Serial.println(i);
+ servo.write(i);
+ delay(20);
+ }
+ for (i = 180; i > 0; i--) {
+ Serial.println(i);
+ servo.write(i);
+ delay(20);
+}
 }
 
 float ping() {
