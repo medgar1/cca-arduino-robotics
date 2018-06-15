@@ -1,12 +1,12 @@
+#include <Servo.h>
 int triggerPin = 8;
+int servoPin = 2;
 int echoPin = 7;
 int led = 9;
 int pot = A0;
-int AIN1 = 6;
-int AIN2 = 12;
-int BIN1 = 5;
-int BIN2 = 4;
-int motorPWM = 10;
+
+Servo servo;
+
 
 void setup()  {
   Serial.begin(19200);
@@ -15,6 +15,7 @@ void setup()  {
   pinMode(triggerPin, OUTPUT);
   pinMode(echoPin, INPUT);
   digitalWrite(triggerPin, LOW);
+  servo.attach(servoPin);
 }
 
 void loop() {
@@ -25,14 +26,13 @@ void loop() {
  analogWrite(100, 200/4);
  Serial.println("inches");
  delay(60);
-}
-
-void forward(int howFast) {
- digitalWrite(AIN1, HIGH);
- digitalWrite(AIN2, LOW);
- digitalWrite(BIN1, HIGH);
- digitalWrite(BIN2, LOW);
- analogWrite(motorPWM, howFast);
+ servo.write(0);
+ delay(1000);
+ servo.write(90);
+ delay(1000);
+ 
+ servo.write(180);
+ delay(1000);
 }
 
 float ping() {
