@@ -4,10 +4,6 @@ int servoPin = 2;
 int echoPin = 7;
 int led = 9;
 int pot = A0;
-int AIN1 = 7;
-int AIN2 = 8;
-int BIN1 = 5;
-int BIN2 = 6;
 
 Servo servo;
 
@@ -26,17 +22,19 @@ void loop() {
  int val;
  val = analogRead(pot);
  analogWrite(led, val/4);
- analogWrite(100, 128);
- analogWrite(100, 200/4);
- Serial.println("inches");
+ Serial.println("test");
  delay(60);
- servo.write(0);
- delay(1000);
- servo.write(90);
- delay(1000);
- 
- servo.write(180);
- delay(1000);
+int i;
+ for (i = 0; i < 180; i++) {
+ Serial.println(i);
+ servo.write(i);
+ delay(20);
+ }
+ for (i = 180; i > 0; i--) {
+ Serial.println(i);
+ servo.write(i);
+ delay(20);
+}
 }
 
 float ping() {
